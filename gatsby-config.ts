@@ -30,13 +30,13 @@ const config: GatsbyConfig = {
             path: `${__dirname}/src/assets`,
          },
       },
-      // {
-      //   resolve: `gatsby-source-filesystem`,
-      //   options: {
-      //     name: `posts`,
-      //     path: `${__dirname}/src/posts`,
-      //   },
-      // },
+      {
+         resolve: `gatsby-source-filesystem`,
+         options: {
+            name: `posts`,
+            path: `${__dirname}/src/posts`,
+         },
+      },
       // {
       //   resolve: `gatsby-plugin-mdx`,
       //   options: {

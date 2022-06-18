@@ -3,10 +3,42 @@ import Layout from '../components/Layout'
 import Hero from '../components/Hero'
 import { graphql } from 'gatsby'
 import Posts from '../components/Posts'
-import { Counter } from '../components/Complete'
 
-const PostsPage = () => {
-   return <Counter />
+const PostsPage = ({ data }) => {
+   const {
+      allMdx: { nodes: posts },
+   } = data
+
+   return (
+      <Layout>
+         <Hero showPerson={false} />
+         <Posts posts={posts} title="all posts" />
+      </Layout>
+   )
 }
+
+export const query = graphql`
+   {
+      allMdx(sort: { fields: frontmatter___date, order: ASC }) {
+         nodes {
+            frontmatter {
+               title
+               author
+               category
+               date(formatString: "MMMM, Do YYYY")
+               slug
+               readTime
+               image {
+                  childImageSharp {
+                     gatsbyImageData
+                  }
+               }
+            }
+            id
+            excerpt
+         }
+      }
+   }
+`
 
 export default PostsPage
