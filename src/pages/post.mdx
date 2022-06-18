@@ -1,0 +1,66 @@
+import {Link} from 'gatsby'
+import {FiInfo} from 'react-icons/fi'
+import Counter from '../components/Complete/Counter'
+import LikeButton from '../components/Complete/LikeButton'
+
+<section className="mdx-page">
+
+# My first Mdx
+
+`hello`
+
+<div className="code">
+
+```js
+const firstName = "john"
+const lastNmae = "smith"
+```
+
+</div>
+
+<Link to="/posts" className="btn center-btn"> all posts </ Link>
+
+<div className="nice-text">
+
+<h3>nice text</h3>
+
+<FiInfo className="nice-text-icon"></FiInfo>
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut enim
+risus. Nam in nisi dignissim mauris semper pulvinar. Etiam sed erat vestibulum,
+laoreet augue vitae, vestibulum tellus. Pellentesque eu tempus nisi, scelerisque
+porttitor urna. Cras feugiat sodales diam quis vulputate. Aenean vel augue
+felis. Vivamus pulvinar euismod dui, quis dignissim diam sodales sit amet.
+Nullam elementum finibus dui, at rhoncus lorem gravida in. Duis purus turpis,
+hendrerit eget aliquam in, scelerisque eget metus.
+
+</div>
+
+<h2> React Componetns </h2>
+
+<Counter />
+
+```tsx
+const LikeButton = () => {
+  const [value, setValue] = React.useState(0)
+  return (
+    <Wrapper>
+      <div>
+        <button onClick={() => setValue(value + 1)}>
+          <AiOutlineLike />
+        </button>
+        <p>
+          Liked the post?
+          <br />
+          Click thumbs up few times
+        </p>
+      </div>
+      <span>+{value}</span>
+    </Wrapper>
+  )
+}
+```
+
+<LikeButton />
+
+</section>

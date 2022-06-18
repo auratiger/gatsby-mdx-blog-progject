@@ -3,10 +3,10 @@ import Layout from '../components/Layout'
 import Hero from '../components/Hero'
 import { graphql } from 'gatsby'
 import Posts from '../components/Posts'
+import { Counter } from '../components/Complete'
+
 const PostsPage = () => {
-return <h4>posts page</h4>
+   return <Counter />
 }
-
-
 
 export default PostsPage
