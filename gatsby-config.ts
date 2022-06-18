@@ -12,9 +12,9 @@ const config: GatsbyConfig = {
    plugins: [
       'gatsby-plugin-styled-components',
       'gatsby-plugin-image',
-      'gatsby-plugin-mdx',
       'gatsby-plugin-sharp',
       'gatsby-transformer-sharp',
+      `gatsby-remark-images`,
       {
          resolve: 'gatsby-source-filesystem',
          options: {
@@ -37,12 +37,12 @@ const config: GatsbyConfig = {
             path: `${__dirname}/src/posts`,
          },
       },
-      // {
-      //   resolve: `gatsby-plugin-mdx`,
-      //   options: {
-      //     gatsbyRemarkPlugins: [{ resolve: 'gatsby-remark-images' }],
-      //   },
-      // },
+      {
+         resolve: `gatsby-plugin-mdx`,
+         options: {
+            gatsbyRemarkPlugins: [{ resolve: 'gatsby-remark-images' }],
+         },
+      },
    ],
 }
 
