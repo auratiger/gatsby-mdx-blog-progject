@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../components/Layout'
 import { navigate } from 'gatsby'
+import SEO from '../components/Seo'
 
 const NewsLetter = () => {
    return (
@@ -38,5 +39,12 @@ const NewsLetter = () => {
       </Layout>
    )
 }
+
+export const Head = () => (
+  <SEO
+    title="Newsletter"
+    description="Please subscribe to my newsletter to receive frequent updates"
+  />
+) 
 
 export default NewsLetter

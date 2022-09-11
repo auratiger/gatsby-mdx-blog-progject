@@ -18,3 +18,7 @@ const components = {
 export const wrapMDX = ({ element }) => {
    return <MDXProvider components={components}> {element}</MDXProvider>
 }
+
+export const onRenderBody = ({ setHtmlAttributes }) => {
+  setHtmlAttributes({ lang: 'en' })
+}

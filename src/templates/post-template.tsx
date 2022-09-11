@@ -4,44 +4,57 @@ import Hero from '../components/Hero'
 import styled from 'styled-components'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Banner from '../components/Banner'
-import { graphql } from 'gatsby'
+import { graphql, PageProps } from 'gatsby'
+import SEO from '../components/Seo'
 
-const PostTemplate = ({ data }) => {
-   const {
-      mdx: {
-         frontmatter: { title, category, image, date, embeddedImages },
-         body,
-      },
-   } = data
+const PostTemplate = ({ data }: PageProps<any>) => {
+  const {
+    mdx: {
+      frontmatter: { title, category, image, date, embeddedImages },
+      body,
+    },
+  } = data
 
-   return (
-     <Layout>
-       <Hero showPerson={false} />
-       <Wrapper>
-         {/* post info */}
-         <article>
-           <GatsbyImage
-             image={getImage(image)}
-             alt={title}
-             className="main-img"
-           />
-           <div className="post-info">
-             <span>{category}</span>
-             <h2>{title}</h2>
-             <p>{date}</p>
-             <div className="underline"></div>
-           </div>
-           {body}
-         </article>
+  return (
+    <Layout>
+      <Hero showPerson={false} />
+      <Wrapper>
+        {/* post info */}
+        <article>
+          <GatsbyImage
+            image={getImage(image)}
+            alt={title}
+            className="main-img"
+          />
+          <div className="post-info">
+            <span>{category}</span>
+            <h2>{title}</h2>
+            <p>{date}</p>
+            <div className="underline"></div>
+          </div>
+          {body}
+        </article>
 
-         {/* banner */}
-         <article>
-           <Banner />
-         </article>
-       </Wrapper>
-     </Layout>
-   )
+        {/* banner */}
+        <article>
+          <Banner />
+        </article>
+      </Wrapper>
+    </Layout>
+  )
 }
+
+export const Head = props => {
+  const {
+    data: {
+      mdx: {
+        frontmatter: { title },
+      },
+    },
+  } = props
+  return <SEO title={title} />
+}
+
 
 export const query = graphql`
    query GetSinglePost($slug: String) {
