@@ -1,11 +1,18 @@
 import type { GatsbyConfig } from 'gatsby'
 
+const title = process.env.TITLE || 'mdx-blog-project'
+const description =
+  process.env.DESCRIPTION || 'Example project for the Gatsby Head API'
+const image = process.env.IMAGE || '/mainImg.png'
+const siteUrl = process.env.URL || 'http://localhost:9000'
+const sitemapName = 'sitemap.xml'
+
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `mdx-blog-project`,
-    description: `Example project for the Gatsby Head API`,
-    image: `/mainImg.png`,
-    siteUrl: `http://localhost:9000`,
+    title: title,
+    description: description,
+    image: image,
+    siteUrl: siteUrl,
     twitterUsername: `auratiger`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
@@ -43,6 +50,7 @@ const config: GatsbyConfig = {
                }
             }
          }`,
+        output: `/${sitemapName}`,
         mapping: {
           posts: {
             sitemap: `posts`,
@@ -83,6 +91,14 @@ const config: GatsbyConfig = {
         ],
         createLinkInHead: true,
         addUncaughtPages: true,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: siteUrl,
+        sitemap: `${siteUrl}/${sitemapName}`,
+        policy: [{ userAgent: '*', allow: '/' }],
       },
     },
     {
