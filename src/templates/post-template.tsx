@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Banner from '../components/Banner'
 import { graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 const PostTemplate = ({ data }) => {
    const {
@@ -16,31 +15,31 @@ const PostTemplate = ({ data }) => {
    } = data
 
    return (
-      <Layout>
-         <Hero showPerson={false} />
-         <Wrapper>
-            {/* post info */}
-            <article>
-               <GatsbyImage
-                  image={getImage(image)}
-                  alt={title}
-                  className="main-img"
-               />
-               <div className="post-info">
-                  <span>{category}</span>
-                  <h2>{title}</h2>
-                  <p>{date}</p>
-                  <div className="underline"></div>
-               </div>
-               <MDXRenderer embeddedImages={embeddedImages}>{body}</MDXRenderer>
-            </article>
+     <Layout>
+       <Hero showPerson={false} />
+       <Wrapper>
+         {/* post info */}
+         <article>
+           <GatsbyImage
+             image={getImage(image)}
+             alt={title}
+             className="main-img"
+           />
+           <div className="post-info">
+             <span>{category}</span>
+             <h2>{title}</h2>
+             <p>{date}</p>
+             <div className="underline"></div>
+           </div>
+           {body}
+         </article>
 
-            {/* banner */}
-            <article>
-               <Banner />
-            </article>
-         </Wrapper>
-      </Layout>
+         {/* banner */}
+         <article>
+           <Banner />
+         </article>
+       </Wrapper>
+     </Layout>
    )
 }
 
