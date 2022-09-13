@@ -5,23 +5,22 @@ import Posts from '../components/Posts'
 import { graphql } from 'gatsby'
 
 const CategoryTemplate = props => {
-   console.log(props)
-   const {
-      data: {
-         allMdx: { nodes: posts },
-      },
-   } = props
+  const {
+    data: {
+      allMdx: { nodes: posts },
+    },
+  } = props
 
-   const {
-      pageContext: { category },
-   } = props
+  const {
+    pageContext: { category },
+  } = props
 
-   return (
-      <Layout>
-         <Hero showPerson={false} />
-         <Posts posts={posts} title={`category / ${category}`} />
-      </Layout>
-   )
+  return (
+    <Layout>
+      <Hero showPerson={false} />
+      <Posts posts={posts} title={`category / ${category}`} />
+    </Layout>
+  )
 }
 
 export const query = graphql`

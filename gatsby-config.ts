@@ -26,7 +26,7 @@ const config: GatsbyConfig = {
     'gatsby-transformer-sharp',
     `gatsby-remark-images`,
     {
-      resolve: `gatsby-plugin-advanced-sitemap`,
+      resolve: `@auratiger/gatsby-plugin-advanced-sitemap-reworked`,
       options: {
         query: `
          {
@@ -56,13 +56,22 @@ const config: GatsbyConfig = {
             sitemap: `posts`,
             serializer: (edges: any) => {
               return edges.map(({ node }: any) => {
+                const images = !!node?.pageContext?.pageImages
+                  ? node.pageContext.pageImages.map(image => {
+                      return {
+                        path: image.publicURL,
+                        caption: 'test',
+                      }
+                    })
+                  : []
+
                 return {
                   node: {
                     id: node.id,
                     slug: node.slug,
                     url: node.url,
                     updated_at: node?.pageContext?.date,
-                    cover_image: node?.pageContext?.image,
+                    page_images: images,
                   },
                 }
               })

@@ -11,7 +11,7 @@ exports.createPages = async ({ graphql, actions }) => {
            frontmatter {
              slug
              date
-             image {
+             embeddedImages {
                publicURL
              }
            }
@@ -25,14 +25,14 @@ exports.createPages = async ({ graphql, actions }) => {
    `)
 
    result.data.allMdx.nodes.forEach(
-     ({ frontmatter: { slug, date, image } }) => {
+     ({ frontmatter: { slug, date, embeddedImages } }) => {
        createPage({
          path: `/posts/${slug}`,
          component: path.resolve(`src/templates/post-template.tsx`),
          context: {
            slug,
            date,
-           image: image.publicURL,
+           pageImages: embeddedImages,
          },
        })
      }
